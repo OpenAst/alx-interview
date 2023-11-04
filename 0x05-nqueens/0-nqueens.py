@@ -4,9 +4,7 @@ import sys
 
 
 def is_safe(board, row, col, N):
-    """Check if it is safe to place a queen at a 
-    particular position
-    """
+    """ Check if it is safe to place a queen at a particular position """
     for i in range(row):
         if board[i][col] == 1:
             return False
@@ -52,7 +50,7 @@ def solveNQueens(N):
     try:
         N = int(N)
     except ValueError:
-        print("N msut be a number")
+        print("N must be a number")
         exit(1)
     if N < 4:
         print("N must be at least 4")
