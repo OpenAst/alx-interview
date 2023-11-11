@@ -1,26 +1,33 @@
-#!/usr/bin/node
+#/usr/bin/node
 
 const request = require('request');
-const movieId = process.argv[2];
 
-const apiUrl = 'https://swapi-api.alx-tools.com/api/films/${movieId}/';
+function getMovieCharacters(movieId) {
+  const baseUrl = 'https://swapi.dev/api/films/';
+  
+  request.get('${baseUrl}${movieId}/', { json: true }, (error, response, movieData) => {
+    if (error) {
+      console.error('Erro fetching movie data: ${error.message}');
+      return;
+    }
 
-request(apiUrl, (error, response, body) => {
-  if (!error && response.statusCode == 200) {
-    const filmData = JSON.parse(body);
-    const characters = filmData.characters;
+    const characterUrls = movieData.characters;
 
-    characters.forEach(characterUrl => {
-      request(characterUrl, (charError, charResponse, charBody) => {
-        if (!charError && charResponse.statusCode === 200) {
-          const characterData = JSON.parse(charBody);
-          console.log(characterData.name);
-        } else {
-          console.error('Error fetching character data:', charError);
-        }
+    charactersUrls.forEach(characterUrl => {
+      request.get(characterUrl, { json: true }, (characterError, characterResponse, characterData) => {
+	if (characterError) {
+	  console.error('Error fetching character data: ${characterError.message}');
+	  return;
+	}
+	console.log(characterData.name);
       });
     });
-  } else {
-    console.error('Error fetching movie data:', error);
-  }
-});
+  });
+}
+
+if (process.argv.length !== 3) {
+  console.log('Usage: node script.js <Movie ID>');
+} else {
+  const movieId = process.argv[2];
+  getMovieCharacters(movieId);
+}
