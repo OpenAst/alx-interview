@@ -3,7 +3,7 @@
 """
 
 
-def makeChange(coins, total):
+def make_change(coins, total):
     if total < 0:
         return 0
     if total == 0:
