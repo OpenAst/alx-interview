@@ -1,9 +1,8 @@
 #!/usr/bin/python3
-"""This module compute the shortest number of coins to make a total
-"""
+"""Compute the fewest number of coins to make a total."""
 
 
-def make_change(coins, total):
+def makeChange(coins, total):
     if total < 0:
         return 0
     if total == 0:
