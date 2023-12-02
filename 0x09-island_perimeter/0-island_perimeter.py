@@ -3,7 +3,8 @@
 """
 
 def island_perimeter(grid):
-    """Compute the perimeter of a grid."""
+    """Compute the perimeter of a grid.
+    """
     if not grid:
         return 0
 
