@@ -2,10 +2,10 @@
 """Prime Game
 """
 
-def isPrime(num):
+def is_prime(num):
     """Check for number primality.
     """
-    if numb < 2:
+    if num < 2:
         return False
     for i in range(2, int(num ** 0.5) + 1):
         if num % i == 0:
@@ -40,7 +40,7 @@ def isWinner(x, nums):
 
             player = 3 - player # Swithc player
 
-        winners.append(winner(player))
+        winners.append(winner(3 - player)) # switch back to the last player
 
     maria_wins = winners.count("Maria")
     ben_wins = winners.count("Ben")
